@@ -1,0 +1,11 @@
+<h1>Pages#home</h1>
+<p>Find me in app/views/pages/home.html.erb</p>
+
+
+<%= form_for @photos, html: { multipart: true } do |f| %>
+  <p>
+    <label>My Photos</label>
+    <%= image_tag(@photos.last.url) if @photos.last.url %>
+    <%= f.file_field :photos, multiple: true %>
+  </p>
+<% end %>
