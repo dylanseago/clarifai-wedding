@@ -14,6 +14,7 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'mini_magick'
 gem 'carrierwave'
+gem 'curb'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-tether', '>= 1.1.0'
