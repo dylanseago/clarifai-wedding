@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   get 'pages/new'
-
   get 'pages/result'
 
   resources :photos
