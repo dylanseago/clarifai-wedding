@@ -86,8 +86,6 @@ GEM
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     pg (0.18.4)
-    protected_attributes (1.1.3)
-      activemodel (>= 4.0.1, < 5.0)
     rack (1.6.4)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -164,7 +162,6 @@ DEPENDENCIES
   jquery-rails
   mini_magick
   pg
-  protected_attributes
   rails (= 4.2.3)
   rails-assets-tether (>= 1.1.0)!
   sass-rails (~> 5.0)
