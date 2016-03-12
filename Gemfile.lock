@@ -37,8 +37,13 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.3)
+    autoprefixer-rails (6.3.3.1)
+      execjs
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
+    bootstrap (4.0.0.alpha3)
+      autoprefixer-rails (>= 6.0.3)
+      sass (>= 3.4.19)
     builder (3.2.2)
     byebug (8.2.2)
     carrierwave (0.10.0)
@@ -147,6 +152,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bootstrap
   byebug
   carrierwave
   jbuilder (~> 2.0)
