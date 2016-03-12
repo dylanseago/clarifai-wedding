@@ -7,20 +7,9 @@ class PhotosController < ApplicationController
   end
 
   def create
-    puts 'YAHOO'
-    #puts params[:photo]
-    #photo = Photo.new(params[:photo][:photos])
-
-    puts params[:photo][:photos]
-    uploader = PhotoUploader.new
-
-    #uploader.store!(params[:photo][:photos])
-
-    #if photo.save
-      redirect_to pages_result_path
-    #else
-    #  puts 'ERROR!'
-    #end
+    @photos = []
+    params[:photo][:file].each { |f| @photos << Photo.create(file: f) }
+    render 'pages/result'
   end
 
   def edit
@@ -38,7 +27,7 @@ class PhotosController < ApplicationController
   private
 
   def photo_params
-    params.require(:photo).permit(:file)
+    params.require(:photo).permit(file)
   end
 
 end
