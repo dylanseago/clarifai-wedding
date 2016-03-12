@@ -1,15 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Myapp</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Memoire</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-
 </head>
 <body>
 
-<%= yield %>
+<div class="site-wrapper">
+
+  <div class="site-wrapper-inner">
+
+    <div class="cover-container">
+
+      <div class="masthead clearfix">
+        <div class="inner">
+          <h3 class="masthead-brand"><img height="48px" src="http://4.bp.blogspot.com/-7nR-Q6ZnU0E/Tkp_Y9K1NnI/AAAAAAAAJa8/Sw2c0vvFWjQ/s400/mymemories-digital-scrapbooking-logo.png"/></h3>
+          <nav>
+            <ul class="nav masthead-nav">
+              <li class="active"><a href="/">Home</a></li>
+              <li><a href="#">Features</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <div class="inner cover">
+        <%= yield %>
+      </div>
+
+      <div class="mastfoot">
+        <div class="inner">
+          <p>&copy; 2016 Scott Mackie and Dylan Seago</p>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
 
 </body>
 </html>
