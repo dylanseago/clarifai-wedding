@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
 
+  get 'album/create'
+
+  get 'album/result'
+
   root 'pages#home'
 
   get 'pages/new'
   get 'pages/result'
+
+  post 'album/create'
 
   resources :photos
 

@@ -3,6 +3,7 @@ require "uri"
 require 'curb'
 
 class PhotosController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
   def index
   end
@@ -11,15 +12,8 @@ class PhotosController < ApplicationController
   end
 
   def create
-    @photos = []
-    params[:photo][:file].each do |f|
-      photo = Photo.new(file: f)
-
-      get_tags("test")
-      @photos << photo
-    end
-
-    render 'pages/result'
+    photo = Photo.create(file: params[:file])
+    render :json => { response: photo }
   end
 
   def edit
@@ -38,22 +32,6 @@ class PhotosController < ApplicationController
 
   def photo_params
     params.require(:photo).permit(file)
-  end
-
-  def get_tags(f)
-    c = Curl::Easy.new("https://api.clarifai.com/v1/tag/") do |curl|
-      curl.headers['Authorization'] = 'Bearer p6W95YdN4xXHRm2Wt7QCKipuPHEnhf'
-    end
-
-    c.multipart_form_post = true
-
-    c.http_post(
-        Curl::PostField.content('model', 'weddings-v1.0'),
-         Curl::PostField.file('encoded_data', 'public/uploads/photo/file/1/3.png'))
-
-    # PARSE
-    puts c.body_str
-    c.body_str
   end
 
 end

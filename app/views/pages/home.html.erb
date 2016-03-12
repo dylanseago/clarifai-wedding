@@ -1,4 +1,7 @@
 <script>
+
+  pending_ids = [];
+
   Dropzone.options.uploadForm = {
     paramName: "file",
     maxFilesize: 10,
@@ -6,8 +9,12 @@
     autoProcessQueue: true,
     acceptedFiles: 'image/jpeg, image/png, image/gif',
 
-    init: function() {
-      this.on("complete", function(file) { alert("Added file."); console.log(file); });
+    init: function () {
+      this.on("complete", function (file) {
+        pending_ids.push(JSON.parse(file.xhr.response)['response']['id']);
+        $('#album-ids').val(pending_ids);
+        console.log(pending_ids);
+      });
     }
   }
 </script>
@@ -15,7 +22,14 @@
 <h1 class="cover-heading">Upload photos to create a memoire.</h1>
 <p class="lead row">
 
-  <%= form_for @photo, html: { multipart: true, class: 'dropzone col-md-8 col-md-offset-2', id: 'upload-form'} do |f| %>
+  <%= form_for @photo, html: { multipart: true, class: 'dropzone col-md-8 col-md-offset-2', id: 'upload-form'}, remote: true do |f| %>
   <% end %>
 
+  <%= form_tag({controller: 'album', action: 'create', id: 'submit-form'}) do |f| %>
+    <input type="hidden" id="album-ids" name="album-ids"/>
+    <input name='commit' type='submit' value='Save'/>
+<% end %>
+
 </p>
+
+
