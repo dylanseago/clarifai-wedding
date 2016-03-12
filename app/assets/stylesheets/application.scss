@@ -12,3 +12,13 @@
  */
 @import "bootstrap";
 @import "cover";
+
+.dropzone {
+  border: 2px dashed #CCCCCC;
+  border-radius: 5px;
+  background: #222222;
+  padding: 54px 54px;
+  min-height: 150px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
