@@ -58,9 +58,14 @@ class Filter
   end
 
   def get_score
-    @right_score-@wrong_score
+    rs = @right_set.length
+    rs = 1 if rs == 0
+    ws = @wrong_set.length
+    ws = 1 if ws == 0
+    @right_score/rs-@wrong_score/ws
   end
 end
+
 
 
 class MachNode
