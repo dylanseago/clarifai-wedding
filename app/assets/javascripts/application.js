@@ -16,4 +16,5 @@
 //= require tether
 //= require bootstrap-sprockets
 //= require dropzone
+//= require turn/turn
 //= require_tree .
