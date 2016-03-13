@@ -57,6 +57,14 @@ body {
   padding: 30px;
 }
 
+@font-face {
+  font-family: fancy;
+  src: url(fonts/SCRIPTIN.ttf);
+}
+
+.fancy {
+  font-family: fancy;
+}
 
 /*
  * Header
