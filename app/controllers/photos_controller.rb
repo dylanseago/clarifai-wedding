@@ -5,28 +5,10 @@ require 'curb'
 class PhotosController < ApplicationController
   skip_before_action :verify_authenticity_token
 
-  def index
-  end
-
-  def new
-  end
-
   def create
     photo = Photo.create(file: params[:file])
     get_tags(photo)
     render :json => { response: photo }
-  end
-
-  def edit
-  end
-
-  def show
-  end
-
-  def update
-  end
-
-  def destroy
   end
 
   private
@@ -63,7 +45,9 @@ class PhotosController < ApplicationController
 
     tag_list = tag_list.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
     puts tag_list
-    photo.update(bucket: bucket_tag(tag_list), tags: tag_list.keys)
+
+    temp_list = tag_list.sort_by {|_key, value| value}.to_h
+    photo.update(bucket: bucket_tag(tag_list), tags: temp_list.keys[0..4])
   end
 
   def bucket_tag(tag_list)

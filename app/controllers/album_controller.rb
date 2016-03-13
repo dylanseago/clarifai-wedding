@@ -3,7 +3,7 @@ class AlbumController < ApplicationController
     photo_set = Photo.where(id: params['album-ids'].split(','))
     @photos = []
     @tagged = []
-    (1..7).each do |i|
+    (0..6).each do |i|
       @tagged[i] = []
     end
     photo_set.each do |photo|
@@ -11,5 +11,4 @@ class AlbumController < ApplicationController
       @tagged[photo.bucket] << photo
     end
   end
-
 end
