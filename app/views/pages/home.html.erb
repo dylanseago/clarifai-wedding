@@ -1,5 +1,11 @@
 <script>
 
+  //document.getElementById("submit-button").disabled = true;
+
+  $(document).ready(function (){
+    document.getElementById("submit-button").disabled = true;
+  });
+
   pending_ids = [];
 
   Dropzone.options.uploadForm = {
@@ -14,6 +20,12 @@
         pending_ids.push(JSON.parse(file.xhr.response)['response']['id']);
         $('#album-ids').val(pending_ids);
         console.log(pending_ids);
+      });
+      this.on("queuecomplete", function (file) {
+        document.getElementById("submit-button").disabled = false;
+      });
+      this.on("addedfile", function(file) {
+        document.getElementById("submit-button").disabled = true;
       });
     }
   }
@@ -31,7 +43,7 @@
 
   <%= form_tag({controller: 'album', action: 'create'}, html: {class: 'col-md-12', id: 'submit-form'}) do |f| %>
     <input type="hidden" id="album-ids" name="album-ids"/>
-    <input name='commit' type='submit' value='Create' class="btn btn-lg btn-primary"
+    <input id="submit-button" name='commit' type='submit' value='Create' class="btn btn-lg btn-primary"
            style="background-color: #EEEEEE; border-color: #EEEEEE; margin-top: 8px;"/>
 <% end %>
 
