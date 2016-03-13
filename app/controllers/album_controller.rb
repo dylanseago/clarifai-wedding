@@ -120,7 +120,7 @@ class AlbumController < ApplicationController
   end
 
   def share
-    render :json => { response: 'test' }
+    render :json => { response: 'Shared!' }
   end
 
   def is_landscape? picture
