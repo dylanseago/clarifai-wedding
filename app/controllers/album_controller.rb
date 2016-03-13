@@ -9,7 +9,7 @@ class AlbumController < ApplicationController
     end
     photo_set.each do |photo|
       @photos << photo
-      @tagged[photo.bucket] << photo
+      @tagged[photo.bucket - 1] << photo
     end
   end
 end
