@@ -174,10 +174,10 @@
   box-sizing: border-box; }
 
 .dropzone {
-  min-height: 150px;
-  border: 2px dashed #CCCCCC;
+  min-height: 250px;
+  border: 2px dashed rgba(51,51,51,.75);
   border-radius: 5px;
-  background: #222222;
+  background: #EFEFEF;
   padding: 20px 20px;}
   .dropzone.dz-clickable {
     cursor: pointer; }
@@ -193,7 +193,7 @@
       opacity: 0.5; }
   .dropzone .dz-message {
     text-align: center;
-    margin: 2em 0; }
+    margin-top: 80px; }
   .dropzone .dz-preview {
     position: relative;
     display: inline-block;
@@ -211,7 +211,7 @@
     .dropzone .dz-preview.dz-file-preview .dz-details {
       opacity: 1; }
     .dropzone .dz-preview.dz-image-preview {
-      background: #222222; }
+      background: transparent; }
       .dropzone .dz-preview.dz-image-preview .dz-details {
         -webkit-transition: opacity 0.2s linear;
         -moz-transition: opacity 0.2s linear;

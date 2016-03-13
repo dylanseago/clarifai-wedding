@@ -13,33 +13,27 @@
 
 <div class="site-wrapper">
 
-  <div class="site-wrapper-inner">
+  <div class="cover-container">
 
-    <div class="cover-container">
-
-      <div class="masthead clearfix">
-        <div class="inner">
-          <h3 class="masthead-brand"><img height="48px" src="http://4.bp.blogspot.com/-7nR-Q6ZnU0E/Tkp_Y9K1NnI/AAAAAAAAJa8/Sw2c0vvFWjQ/s400/mymemories-digital-scrapbooking-logo.png"/></h3>
-          <nav>
-            <ul class="nav masthead-nav">
-              <li class="active"><a href="/">Home</a></li>
-              <li><a href="#">Features</a></li>
-              <li><a href="#">Contact</a></li>
-            </ul>
-          </nav>
-        </div>
+    <div class="masthead clearfix">
+      <div class="inner">
+        <h3 class="masthead-brand">
+          <a href="/">
+            Memoires
+          </a>
+        </h3>
+        <nav>
+          <ul class="nav masthead-nav">
+            <li class="active"><a href="/">Home</a></li>
+            <li><a href="#">Features</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
       </div>
+    </div>
 
-      <div class="inner cover">
-        <%= yield %>
-      </div>
-
-      <div class="mastfoot">
-        <div class="inner">
-          <p>&copy; 2016 Scott Mackie and Dylan Seago</p>
-        </div>
-      </div>
-
+    <div class="inner cover">
+      <%= yield %>
     </div>
 
   </div>

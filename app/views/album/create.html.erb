@@ -1,8 +1,9 @@
 <style>
-  
-#flipbook{
-  width:600px;
-  height:400px;
+
+#flipbook {
+  margin-top: 40px;
+  width:960px;
+  height:600px;
   -webkit-transition:margin-left 0.2s;
   -moz-transition:margin-left 0.2s;
   -ms-transition:margin-left 0.2s;
@@ -10,84 +11,149 @@
   transition:margin-left 0.2s;
 }
 
-#flipbook .page{
-  width:300px;
-  height:400px;
-  background-color:white;
-  line-height:400px;
+.page{
+  background: url(<%= image_url('pages.png') %>) !important;
   font-size:30px;
 }
 
-#flipbook .page-wrapper{
-  -webkit-perspective:2000px;
-  -moz-perspective:2000px;
-  -ms-perspective:2000px;
-  -o-perspective:2000px;
-  perspective:2000px;
+.hard {
+  background: url(<%= image_url('book-covers.jpg') %>) !important;
 }
 
-#flipbook .hard{
-  background: #AAA !important;
+.front-outer {
+  background-position: 0 0 !important;
+}
+
+.front-inner {
+  background-position: -480px 0 !important;
+}
+
+.back-inner {
+  left: 4px;
+  background-position: -960px 0 !important;
+}
+
+.back-outer {
+  right: 4px;
+  background-position: -1440px 0 !important;
+}
+
+.depth {
+  background-image: url(<%= image_url('pages-depth.png') %>);
+  position: absolute;
+  top: 7px;
+  width: 16px;
+  height: 590px;
+}
+
+.back-inner .depth {
+  background-position: right 0;
+}
+
+.front-inner .depth {
+  background-position: 0 0;
+}
+
+.soft {
+  width: 460px;
+  height: 582px;
+}
+
+.soft.odd {
+  background-position: 460px 0 !important;
+}
+
+.soft.even {
+  background-position: 0 0 !important;
+}
+
+.hard{
   color:#333;
-  -webkit-box-shadow:inset 0 0 5px #666;
-  -moz-box-shadow:inset 0 0 5px #666;
-  -o-box-shadow:inset 0 0 5px #666;
-  -ms-box-shadow:inset 0 0 5px #666;
-  box-shadow:inset 0 0 5px #666;
+  line-height:400px;
   font-weight:bold;
 }
 
-#flipbook .odd{
-  background:-webkit-gradient(linear, right top, left top, color-stop(0.95, #FFF), color-stop(1, #DADADA));
-  background-image:-webkit-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
-  background-image:-moz-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
-  background-image:-ms-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
-  background-image:-o-linear-gradient(right, #FFF 95%, #C4C4C4 100%);
-  background-image:linear-gradient(right, #FFF 95%, #C4C4C4 100%);
-  -webkit-box-shadow:inset 0 0 5px #666;
-  -moz-box-shadow:inset 0 0 5px #666;
-  -o-box-shadow:inset 0 0 5px #666;
-  -ms-box-shadow:inset 0 0 5px #666;
-  box-shadow:inset 0 0 5px #666;
-
-}
-
-#flipbook .even{
-  background:-webkit-gradient(linear, left top, right top, color-stop(0.95, #fff), color-stop(1, #dadada));
-  background-image:-webkit-linear-gradient(left, #fff 95%, #dadada 100%);
-  background-image:-moz-linear-gradient(left, #fff 95%, #dadada 100%);
-  background-image:-ms-linear-gradient(left, #fff 95%, #dadada 100%);
-  background-image:-o-linear-gradient(left, #fff 95%, #dadada 100%);
-  background-image:linear-gradient(left, #fff 95%, #dadada 100%);
-  -webkit-box-shadow:inset 0 0 5px #666;
-  -moz-box-shadow:inset 0 0 5px #666;
-  -o-box-shadow:inset 0 0 5px #666;
-  -ms-box-shadow:inset 0 0 5px #666;
-  box-shadow:inset 0 0 5px #666;
-}
-
-#flipbook .inner-page {
-  padding: 10px;
+.inner-page {
+  width: 100%;
+  height: 100%;
+  padding: 6%;
   box-sizing: border-box;
 }
+
+.page-img {
+  max-width: 100%;
+  max-height: 100%;
+  vertical-align: middle;
+}
+
+.shadow{
+  box-shadow: 0 4px 10px #666;
+}
+
 </style>
 
-<h1>Album#create</h1>
-<p>Find me in app/views/album/create.html.erb</p>
+<script>
+  $(document).ready(function() {
+    var fb = $('#flipbook');
+    fb.turn({ autoCenter: true });
+    var pageCount = fb.turn('pages');
+
+    fb.bind('turned', function(e, page, view) {
+      // Ensure covers stay fixed behind pages
+      if (page == 1) {
+        $('.front-inner').removeClass('fixed');
+      } else {
+        $('.front-inner').addClass('fixed');
+      }
+      if (page == pageCount) {
+        $('.back-inner').removeClass('fixed');
+      } else {
+        $('.back-inner').addClass('fixed');
+      }
+console.log(page);
+      console.log(pageCount);
+      // Scale the page depth
+      var leftWidth = 16;
+      var rightWidth = 16;
+      var rPage = page - (page % 2 == 0 ? 0 : 1); // Even out for consistent depths
+      if (rPage > pageCount / 2) {
+        if (rPage > pageCount - 5) {
+          rightWidth = 0;
+        } else {
+          rightWidth *= ((pageCount - rPage) / (pageCount / 2));
+        }
+      } else {
+        if (rPage < 6) {
+          leftWidth = 0;
+        } else {
+          leftWidth *= (rPage / (pageCount / 2));
+        }
+      }
+      $('.front-inner .depth').css({ width: leftWidth + 'px', left: (20 - leftWidth) + 'px' });
+      $('.back-inner .depth').css({ width: rightWidth + 'px', right: (20 - rightWidth) + 'px' });
+    });
+
+  });
+</script>
 
 <div id="flipbook">
-  <div class="hard"> My Wedding </div>
+  <div class="hard front-outer"></div>
+  <div class="hard front-inner">
+    <div class="depth" style="width: 0;"></div>
+  </div>
   <% @photos.each do |p| %>
-      <div class="page">
-        <div class="inner-page"><%= image_tag(p.file.url, width: "100%", height: "100%") %></div>
+      <div class="soft own-size">
+        <div class="inner-page"><%= image_tag(p.file.url, class: "page-img") %></div>
       </div>
   <% end %>
-  <div class="hard"></div>
-  <div class="hard"></div>
+  <% if @photos.size.odd? %>
+    <div class="soft own-size"></div>
+  <% end %>
+  <div class="hard back-inner fixed">
+    <div class="depth" style="width: 16px; right: 4px;"></div>
+  </div>
+  <div class="hard back-outer"></div>
 </div>
 
 <script type="text/javascript">
-  $("#flipbook").turn({
-    autoCenter: true
-  });
 </script>

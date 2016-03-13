@@ -20,20 +20,21 @@
 </script>
 
 <h1 class="cover-heading">Upload photos to create a memoire.</h1>
-<p class="lead row">
+<div class="row" style="margin: 32px 0;">
 
-  <%= form_for @photo, html: { multipart: true, class: 'dropzone col-md-8 col-md-offset-2', id: 'upload-form'}, remote: true do |f| %>
+  <%= form_for @photo, html: { multipart: true, class: 'dropzone col-md-6 col-md-offset-3', id: 'upload-form'}, remote: true do |f| %>
   <% end %>
 
-</p>
+</div>
 
-<p class="lead row">
+<div class="row">
 
-  <%= form_tag({controller: 'album', action: 'create', class: 'col-md-12', id: 'submit-form'}) do |f| %>
+  <%= form_tag({controller: 'album', action: 'create'}, html: {class: 'col-md-12', id: 'submit-form'}) do |f| %>
     <input type="hidden" id="album-ids" name="album-ids"/>
-    <input name='commit' type='submit' value='Create' class="btn btn-primary" style="background-color: #EEEEEE; border-color: #EEEEEE; color: #222222;"/>
+    <input name='commit' type='submit' value='Create' class="btn btn-lg btn-primary"
+           style="background-color: #EEEEEE; border-color: #EEEEEE; margin-top: 8px;"/>
 <% end %>
 
-</p>
+</div>
 
 
