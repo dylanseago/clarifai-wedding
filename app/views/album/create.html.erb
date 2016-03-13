@@ -17,7 +17,7 @@
 }
 
 .hard {
-  background: url(<%= image_url('book-covers.jpg') %>) !important;
+  background: url(<%= image_url('book-covers.jpg') %>) no-repeat !important;
 }
 
 .front-outer {
@@ -150,7 +150,7 @@ console.log(page);
     <div class="soft own-size"></div>
   <% end %>
   <div class="hard back-inner fixed">
-    <div class="depth" style="width: 16px; right: 4px;"></div>
+    <div class="depth" style="width: 0;"></div>
   </div>
   <div class="hard back-outer"></div>
 </div>
