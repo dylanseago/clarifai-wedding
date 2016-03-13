@@ -1,6 +1,12 @@
 class AlbumController < ApplicationController
   def create
-    photo_set = Photo.where(id: params['album-ids'])
+
+
+    photo_set = Photo.where(id: params['album-ids'].split(','))
+    puts 'HEEEEEEEREEEEEE'
+    puts params['album-ids']
+    puts params['album-ids']
+    puts photo_set.length
     @photos = []
     photo_set.each do |photo|
       get_tags(photo)
@@ -30,7 +36,7 @@ class AlbumController < ApplicationController
     puts photo
 
     c.http_post(Curl::PostField.content('model', 'weddings-v1.0'),
-        Curl::PostField.file('encoded_data', 'public/'+photo.file.url))
+                Curl::PostField.file('encoded_data', 'public/'+photo.file.url))
 
     # PARSE
 
