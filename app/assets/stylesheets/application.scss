@@ -22,9 +22,12 @@ img{
 
 @font-face{
   font-family: fancyFont;
-  src: url(SCRIPTIN.ttf);
+  src: url(wedding-bells.ttf);
 }
 
 .fancy-font{
   font-family: fancyFont, Helvetica, Arial, sans-serif;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
