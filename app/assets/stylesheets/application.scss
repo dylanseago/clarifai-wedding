@@ -13,3 +13,18 @@
 @import "bootstrap";
 @import "cover";
 @import "dropzone";
+
+img{
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+@font-face{
+  font-family: fancyFont;
+  src: url(SCRIPTIN.ttf);
+}
+
+.fancy-font{
+  font-family: fancyFont, Helvetica, Arial, sans-serif;
+}
