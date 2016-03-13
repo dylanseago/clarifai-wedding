@@ -27,4 +27,7 @@ img{
 
 .fancy-font{
   font-family: fancyFont, Helvetica, Arial, sans-serif;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
 }
