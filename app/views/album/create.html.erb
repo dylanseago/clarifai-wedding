@@ -86,7 +86,6 @@ body{
   box-sizing: border-box;
 }
 
-<<<<<<< HEAD
 .btn-custom{
   background-color: #EEEEEE;
   border-color: #EEEEEE;
@@ -96,9 +95,6 @@ body{
 }
 
 .page-img-wide {
-=======
-.page-img {
->>>>>>> f6079819adb809cafaf12f970cfd0bce1d885d99
   max-width: 100%;
   max-height: 47.5%;
   vertical-align: middle;
@@ -108,6 +104,11 @@ body{
   max-width: 100%;
   max-height:100%;
   vertical-align: middle;
+}
+
+.page-img-header {
+  max-width: 100%;
+  max-height: 60%;
 }
 
 .shadow{
@@ -192,32 +193,29 @@ body{
 
         <h1 class="tag-header"><%= @tags[i] %></h1>
 
+        <%= image_tag(@tagged[i][0].file.url, class: "page-img-header") %>
 
-        <% @tagged[i].each_with_index do |p, i| %>
+      </div>
+    </div>
 
-          <% if p[1] == 0 %>
 
-            <%= image_tag(p[0].file.url, class: "page-img-wide") %>
-            <% wide_var = 1 %>
-            <% if wide_var == 0 %>
-              <div style="display:block; height: 5%; width: 100%;"></div>
-            <% else %>
-              </div>
-              </div>
-              <div class="soft own-size">
-                <div class="inner-page">
-                  <% page_count += 1 %>
-                  <% wide_var = 0 %>
-            <% end %>
+    <div class="soft own-size">
+      <div class="inner-page">
+        <% @tagged[i][1].each_with_index do |p, i| %>
+          <% page_count += 1 %>
 
+          <% if p.size == 1 %>
+            <%= image_tag(p[0].file.url, class: "page-img-tall") %>
           <% else %>
             <%= image_tag(p[0].file.url, class: "page-img-tall") %>
-            <% wide_var += 0 %>
-              </div>
-              </div>
-              <div class="soft own-size">
-              <div class="inner-page">
-              <% page_count += 1 %>
+            <%= image_tag(p[1].file.url, class: "page-img-tall") %>
+          <% end %>
+
+          <% if i != @tagged[i][1].size - 1 %>
+            </div>
+            </div>
+            <div class="soft own-size">
+            <div class="inner-page">
           <% end %>
         <% end %>
       </div>
