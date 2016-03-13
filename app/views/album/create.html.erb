@@ -86,6 +86,14 @@ body{
   box-sizing: border-box;
 }
 
+.btn-custom{
+  background-color: #EEEEEE;
+  border-color: #EEEEEE;
+  margin-top: 8px;
+  width: 100px;
+  height: 40px;
+}
+
 .page-img {
   max-width: 100%;
   max-height: 100%;
@@ -141,6 +149,12 @@ console.log(page);
 
   });
 </script>
+
+
+<%= button_to "Home", { action: "home", controller: "pages"},  class: "btn btn-lg btn-primary btn-custom", method: :get %>
+<%= button_to "Share", { action: "share", controller: "album"},  class: "btn btn-lg btn-primary btn-custom", method: :get, :remote => true %>
+
+
 
 <div id="flipbook">
   <div class="hard front-outer"></div>
