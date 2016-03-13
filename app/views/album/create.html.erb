@@ -1,7 +1,7 @@
 <style>
 
 #flipbook {
-  margin-top: 60px;
+  margin-top: 40px;
   width:960px;
   height:600px;
   margin-bottom: 100px;
@@ -87,12 +87,16 @@ body{
 }
 
 .btn-custom{
-  display: block;
+  display: inline-block;
   background-color: #EEEEEE;
   border-color: #EEEEEE;
   margin-top: 8px;
   width: 100px;
   height: 40px;
+}
+
+.btn-form {
+  display:block;
 }
 
 .page-img-wide {
@@ -128,6 +132,10 @@ body{
   margin-top: 10%;
   margin-bottom: 15%;
 }
+
+    .btn-wrapper {
+      margin-top: 30px;
+    }
 
 </style>
 
@@ -171,14 +179,22 @@ body{
       $('.back-inner .depth').css({ width: rightWidth + 'px', right: (20 - rightWidth) + 'px' });
     });
 
+    $("#share").click(function() {
+      var alert = $("#copied-alert");
+      alert.fadeIn().delay(5000).fadeOut();
+    });
+
   });
 </script>
 
+<div id="copied-alert" class="alert alert-success alert-compact pull-left" role="alert" style="position:absolute; left: 30px; top: 30px; display:none;">Copied link to clipboard</div>
+
 <div style="display:block; height: 20px;" ></div>
 
-<div>
-<%= button_to "Home", { action: "home", controller: "pages"},  class: "btn btn-lg btn-primary btn-custom pull-left", method: :get %>
-<%= button_to "Share", { action: "share", controller: "album"},  class: "btn btn-lg btn-primary btn-custom", method: :get, :remote => true %>
+<div class="btn-wrapper">
+  <a href="/" class="btn btn-large btn-custom pull-left" >Home</a>
+  <div class="pull-left" style="display:inline-block; width: 20px;"></div>
+  <button id="share" class="btn btn-large btn-custom pull-left">Share</button>
 </div>
 
 
