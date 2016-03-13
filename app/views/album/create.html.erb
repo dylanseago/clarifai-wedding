@@ -193,7 +193,7 @@ body{
 
         <h1 class="tag-header"><%= @tags[i] %></h1>
 
-        <%= image_tag(@tagged[i][0].file.url, class: "page-img-header") %>
+        <%= image_tag(@image_array[i][0].file.url, class: "page-img-header") %>
 
       </div>
     </div>
@@ -201,7 +201,7 @@ body{
 
     <div class="soft own-size">
       <div class="inner-page">
-        <% @tagged[i][1].each_with_index do |p, i| %>
+        <% @image_array[i][1].each_with_index do |p, i| %>
           <% page_count += 1 %>
 
           <% if p.size == 1 %>
@@ -211,7 +211,7 @@ body{
             <%= image_tag(p[1].file.url, class: "page-img-tall") %>
           <% end %>
 
-          <% if i != @tagged[i][1].size - 1 %>
+          <% if i != @image_array[i][1].size - 1 %>
             </div>
             </div>
             <div class="soft own-size">
