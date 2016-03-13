@@ -9,7 +9,7 @@ class AlbumController < ApplicationController
     end
     photo_set.each do |photo|
       if is_landscape?(photo)
-        @tagged[photo.bucket] << [photo,0]
+        @tagged[photo.bucket - 1] << [photo,0]
       else
         @tagged[photo.bucket - 1] << [photo,1]
       end

@@ -86,14 +86,6 @@ body{
   box-sizing: border-box;
 }
 
-.btn-custom{
-  background-color: #EEEEEE;
-  border-color: #EEEEEE;
-  margin-top: 8px;
-  width: 100px;
-  height: 40px;
-}
-
 .page-img {
   max-width: 100%;
   max-height: 47.5%;
@@ -156,6 +148,7 @@ body{
   });
 </script>
 
+<div style="display:block; height: 20px;" ></div>
 
 <%= button_to "Home", { action: "home", controller: "pages"},  class: "btn btn-lg btn-primary btn-custom", method: :get %>
 <%= button_to "Share", { action: "share", controller: "album"},  class: "btn btn-lg btn-primary btn-custom", method: :get, :remote => true %>
@@ -174,7 +167,7 @@ body{
         <% page_count += 1 %>
         <h1 class="tag-header"><%= @tags[i] %></h1>
         <% @tagged[i].each_with_index do |p, i| %>
-          <%= image_tag(p.file.url, class: "page-img") %>
+          <%= image_tag(p[0].file.url, class: "page-img") %>
           <% if i.even? and i + 1 != @tagged.size %>
             </div>
             </div>
