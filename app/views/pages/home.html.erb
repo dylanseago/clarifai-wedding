@@ -34,9 +34,7 @@
 
 <div class="masthead clearfix">
   <div class="inner">
-    <a href="/">
-      <%= image_tag('header') %>
-    </a>
+      <%= image_tag('header', class: 'custom-header') %>
   </div>
 </div>
 
@@ -50,7 +48,7 @@
 
 <div class="row">
 
-  <%= form_tag({controller: 'album', action: 'create'}, html: {class: 'col-md-12', id: 'submit-form'}) do |f| %>
+  <%= form_tag({controller: 'album', action: 'create'}, html: {class: 'col-md-12 create-button-padding', id: 'submit-form'}) do |f| %>
     <input type="hidden" id="album-ids" name="album-ids"/>
     <input id="submit-button" name='commit' type='submit' value='Create' class="btn btn-lg btn-primary"
            style="background-color: #EEEEEE; border-color: #EEEEEE; margin-top: 8px;"/>
@@ -58,4 +56,6 @@
 
 </div>
 
+<br><br>
+<br><br>
 

@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20160312071855) do
   enable_extension "plpgsql"
 
   create_table "photos", force: :cascade do |t|
-    t.integer  "bucket"
+    t.integer  "buckets",    default: [],              array: true
     t.string   "tags",       default: [],              array: true
     t.string   "file"
     t.datetime "created_at",              null: false

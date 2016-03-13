@@ -8,10 +8,20 @@ class AlbumController < ApplicationController
       @tagged[i] = []
     end
     photo_set.each do |photo|
+      min_counter = nil
+      min_bucket = 0
+
+      photo.buckets.each do |b|
+        if min_counter == nil || @tagged[b-1].length < min_counter
+          min_counter = @tagged[b-1].length
+          min_bucket = b
+        end
+      end
+
       if is_landscape?(photo)
-        @tagged[photo.bucket] << [photo,0]
+        @tagged[min_bucket - 1] << [photo,0]
       else
-        @tagged[photo.bucket - 1] << [photo,1]
+        @tagged[min_bucket - 1] << [photo,1]
       end
 
       @photos << photo

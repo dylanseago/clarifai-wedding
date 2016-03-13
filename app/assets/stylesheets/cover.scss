@@ -55,6 +55,7 @@ body {
 /* Padding for spacing */
 .inner {
   padding: 30px;
+  min-height: 100%;
 }
 
 @font-face {
@@ -118,7 +119,6 @@ body {
 
 .cover {
   padding: 0 20px;
-  margin-bottom: 80px;
 }
 .cover .btn-lg {
   padding: 10px 20px;
@@ -134,7 +134,10 @@ body {
   /* Handle the widths */
   .masthead,
   .cover-container {
+    margin-top: -30px;
+    margin-bottom: -30px;
     width: 100%; /* Must be percentage or pixels for horizontal alignment */
+
   }
 }
 

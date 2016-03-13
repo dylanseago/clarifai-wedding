@@ -94,9 +94,15 @@ body{
   height: 40px;
 }
 
-.page-img {
+.page-img-wide {
   max-width: 100%;
   max-height: 47.5%;
+  vertical-align: middle;
+}
+
+.page-img-tall {
+  max-width: 100%;
+  max-height:100%;
   vertical-align: middle;
 }
 
@@ -167,23 +173,46 @@ body{
   <div class="hard front-inner">
     <div class="depth" style="width: 0;"></div>
   </div>
+
+
   <% page_count = 0 %>
+  <% wide_var = 0 %>
   <% (0..6).each do |i| %>
+
+
     <div class="soft own-size">
       <div class="inner-page">
+
         <% page_count += 1 %>
+
         <h1 class="tag-header"><%= @tags[i] %></h1>
+
+
         <% @tagged[i].each_with_index do |p, i| %>
-          <%= image_tag(p.file.url, class: "page-img") %>
-          <% if i.even? and i + 1 != @tagged.size %>
-            </div>
-            </div>
-            <div class="soft own-size">
-            <div class="inner-page">
-            <% page_count += 1 %>
-          <% end %>
-          <% if i.odd? %>
-            <div style="display:block; height: 5%; width: 100%;"></div>
+
+          <% if p[1] == 0 %>
+
+            <%= image_tag(p[0].file.url, class: "page-img-wide") %>
+            <% wide_var = 1 %>
+            <% if wide_var == 0 %>
+              <div style="display:block; height: 5%; width: 100%;"></div>
+            <% else %>
+              </div>
+              </div>
+              <div class="soft own-size">
+                <div class="inner-page">
+                  <% page_count += 1 %>
+                  <% wide_var = 0 %>
+            <% end %>
+
+          <% else %>
+            <%= image_tag(p[0].file.url, class: "page-img-tall") %>
+            <% wide_var += 0 %>
+              </div>
+              </div>
+              <div class="soft own-size">
+              <div class="inner-page">
+              <% page_count += 1 %>
           <% end %>
         <% end %>
       </div>

@@ -19,8 +19,6 @@ class PhotosController < ApplicationController
 
 
   def get_tags(photo)
-    return photo.bucket if photo.bucket
-
     c = Curl::Easy.new("https://api.clarifai.com/v1/tag/") do |curl|
       curl.headers['Authorization'] = 'Bearer p6W95YdN4xXHRm2Wt7QCKipuPHEnhf'
     end
@@ -47,7 +45,7 @@ class PhotosController < ApplicationController
     puts tag_list
 
     temp_list = tag_list.sort_by {|_key, value| value}.to_h
-    photo.update(bucket: bucket_tag(tag_list), tags: temp_list.keys[0..4])
+    photo.update(buckets: bucket_tag(tag_list), tags: temp_list.keys[0..4])
   end
 
   def bucket_tag(tag_list)
@@ -59,13 +57,19 @@ class PhotosController < ApplicationController
     puts $learn_n6.classify(tag_list)
     puts $learn_n7.classify(tag_list)
 
-    return 1 if $learn_n1.classify(tag_list)
-    return 5 if $learn_n5.classify(tag_list)
-    return 7 if $learn_n7.classify(tag_list)
-    return 6 if $learn_n6.classify(tag_list)
-    return 3 if $learn_n3.classify(tag_list)
-    return 2 if $learn_n2.classify(tag_list)
-    return 4 if $learn_n4.classify(tag_list)
-    0
+    matches = []
+
+    matches << 1 if $learn_n1.classify(tag_list)
+    matches << 5 if $learn_n5.classify(tag_list)
+    matches << 7 if $learn_n7.classify(tag_list)
+    matches << 6 if $learn_n6.classify(tag_list)
+    matches << 3 if $learn_n3.classify(tag_list)
+    matches << 2 if $learn_n2.classify(tag_list)
+    matches << 4 if $learn_n4.classify(tag_list)
+
+    return matches if matches
+    [0]
+
+
   end
 end
