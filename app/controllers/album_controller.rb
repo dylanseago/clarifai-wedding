@@ -33,86 +33,36 @@ class AlbumController < ApplicationController
 
 
 
-    temp_stack = []
-
     @image_array[0] = []
-    @image_array[0] << "Getting Ready!"
-    @tagged[0].each do |p|
-        if p[1] == 1
-          @image_array[0] << [p]
+
+
+
+
+    (0..6).each do |j|
+      @image_array[j] = []
+      next if @tagged[j].length == 0
+
+      @image_array[j] << @tagged[j][0][0]
+
+
+      appending_list = []
+      temp_stack = []
+      @tagged[j].each_with_index do |p, i|
+        next if i == 0
+
+
+        if p[1] == 0
+          appending_list << [p[0]]
         else
           if temp_stack.length == 0
-            temp_stack.push(p)
+            temp_stack.push(p[0])
           else
-            @image_array[0]  << [temp_stack.pop, p]
+            appending_list << [temp_stack.pop, p[0]]
           end
         end
+      end
 
-    end
-
-    temp_stack = []
-
-    @image_array[1] = []
-    @image_array[1] << "The Bridesmaids"
-    @tagged[1].each do |p|
-        if p[1] == 1
-          @image_array[1] << [p]
-        else
-          if temp_stack.length == 0
-            temp_stack.push(p)
-          else
-            @image_array[1]  << [temp_stack.pop, p]
-          end
-        end
-    end
-
-    temp_stack = []
-
-
-    @image_array[2] = []
-    @image_array[2] << "The Groomsmen"
-    @tagged[2].each do |p|
-        if p[1] == 1
-          @image_array[2] << [p]
-        else
-          if temp_stack.length == 0
-            temp_stack.push(p)
-          else
-            @image_array[2] << [temp_stack.pop, p]
-          end
-        end
-    end
-
-    temp_stack = []
-
-    @image_array[3] = []
-    @image_array[3] << "The Loving Couple"
-    @tagged[3].each do |p|
-        if p[1] == 1
-          @image_array[3] << [p]
-        else
-          if temp_stack.length == 0
-            temp_stack.push(p)
-          else
-            @image_array[3] << [temp_stack.pop, p]
-          end
-        end
-    end
-
-    temp_stack = []
-
-    @image_array[4] = []
-    @image_array[4] << "The Ceremony"
-    @tagged[6].each do |p|
-        if p[1] == 1
-          @image_array[4] << [p]
-        else
-          if temp_stack.length == 0
-            temp_stack.push(p)
-          else
-            @image_array[4]  << [temp_stack.pop, p]
-          end
-        end
+      @image_array[j] << appending_list
     end
 
   puts @image_array

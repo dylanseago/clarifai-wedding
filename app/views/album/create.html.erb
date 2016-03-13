@@ -87,6 +87,7 @@ body{
 }
 
 .btn-custom{
+  display: inline-block;
   background-color: #EEEEEE;
   border-color: #EEEEEE;
   margin-top: 8px;
@@ -175,9 +176,10 @@ body{
 
 <div style="display:block; height: 20px;" ></div>
 
-<%= button_to "Home", { action: "home", controller: "pages"},  class: "btn btn-lg btn-primary btn-custom", method: :get %>
-<%= button_to "Share", { action: "share", controller: "album"},  class: "btn btn-lg btn-primary btn-custom", method: :get, :remote => true %>
-
+<div>
+<%= button_to "Home", { action: "home", controller: "pages"},  class: "btn btn-lg btn-primary btn-custom float-left", method: :get %>
+<%= button_to "Share", { action: "share", controller: "album"},  class: "btn btn-lg btn-primary btn-custom float-right", method: :get, :remote => true %>
+</div>
 
 
 <div id="flipbook">
@@ -188,8 +190,10 @@ body{
 
 
   <% page_count = 0 %>
-  <% wide_var = 0 %>
+
+
   <% (0..6).each do |i| %>
+    <% next if @image_array[i].length == 0 %>
 
 
     <div class="soft own-size">
@@ -207,10 +211,10 @@ body{
 
     <div class="soft own-size">
       <div class="inner-page">
-        <% @image_array[i][1].each_with_index do |p, i| %>
+        <% @image_array[i][1].each_with_index do |p, j| %>
           <% page_count += 1 %>
 
-          <% if p.size == 1 %>
+          <% if p.length == 1 %>
             <%= image_tag(p[0].file.url, class: "page-img-tall") %>
           <% else %>
             <%= image_tag(p[0].file.url, class: "page-img-wide") %>
@@ -218,7 +222,7 @@ body{
             <%= image_tag(p[1].file.url, class: "page-img-wide") %>
           <% end %>
 
-          <% if i != @image_array[i][1].size - 1 %>
+          <% if j != @image_array[i][1].length - 1 %>
             </div>
             </div>
             <div class="soft own-size">
