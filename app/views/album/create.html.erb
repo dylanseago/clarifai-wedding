@@ -142,10 +142,14 @@ console.log(page);
     <div class="depth" style="width: 0;"></div>
     <h1 class="fancy">Love</h1>
   </div>
-  <% @photos.each do |p| %>
-      <div class="soft own-size">
-        <div class="inner-page"><%= image_tag(p.file.url, class: "page-img") %></div>
+  <% (0..6).each do |i| %>
+    <div class="soft own-size">
+      <div class="inner-page">
+        <% @tagged[i].each do |p| %>
+          <%= image_tag(p.file.url, class: "page-img") %>
+        <% end %>
       </div>
+    </div>
   <% end %>
   <% if @photos.size.odd? %>
     <div class="soft own-size"></div>
