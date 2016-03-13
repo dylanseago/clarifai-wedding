@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   get 'pages/new'
+  get 'pages/home'
   get 'pages/result'
+
+
+  get 'album/share'
 
   post 'album/create'
 

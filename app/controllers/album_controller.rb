@@ -12,4 +12,8 @@ class AlbumController < ApplicationController
       @tagged[photo.bucket - 1] << photo
     end
   end
+
+  def share
+    render :json => { response: 'test' }
+  end
 end

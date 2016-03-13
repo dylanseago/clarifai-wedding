@@ -1,14 +1,20 @@
 <style>
 
 #flipbook {
-  margin-top: 10px;
+  margin-top: 60px;
   width:960px;
   height:600px;
+  margin-bottom: 100px;
   -webkit-transition:margin-left 0.2s;
   -moz-transition:margin-left 0.2s;
   -ms-transition:margin-left 0.2s;
   -o-transition:margin-left 0.2s;
   transition:margin-left 0.2s;
+}
+
+body{
+  padding-top: 10px;
+  overflow:hidden;
 }
 
 .page{
@@ -80,6 +86,14 @@
   box-sizing: border-box;
 }
 
+.btn-custom{
+  background-color: #EEEEEE;
+  border-color: #EEEEEE;
+  margin-top: 8px;
+  width: 100px;
+  height: 40px;
+}
+
 .page-img {
   max-width: 100%;
   max-height: 47.5%;
@@ -141,6 +155,12 @@
 
   });
 </script>
+
+
+<%= button_to "Home", { action: "home", controller: "pages"},  class: "btn btn-lg btn-primary btn-custom", method: :get %>
+<%= button_to "Share", { action: "share", controller: "album"},  class: "btn btn-lg btn-primary btn-custom", method: :get, :remote => true %>
+
+
 
 <div id="flipbook">
   <div class="hard front-outer"></div>
