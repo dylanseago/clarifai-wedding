@@ -96,12 +96,19 @@ body{
 
 .page-img {
   max-width: 100%;
-  max-height: 100%;
+  max-height: 47.5%;
   vertical-align: middle;
 }
 
 .shadow{
   box-shadow: 0 4px 10px #666;
+}
+
+.tag-header {
+  font-family: fancyFont;
+  font-size: 60px;
+  margin-top: 10%;
+  margin-bottom: 15%;
 }
 
 </style>
@@ -124,8 +131,7 @@ body{
       } else {
         $('.back-inner').addClass('fixed');
       }
-console.log(page);
-      console.log(pageCount);
+
       // Scale the page depth
       var leftWidth = 16;
       var rightWidth = 16;
@@ -160,14 +166,30 @@ console.log(page);
   <div class="hard front-outer"></div>
   <div class="hard front-inner">
     <div class="depth" style="width: 0;"></div>
-    <h1 class="fancy">Love</h1>
   </div>
-  <% @photos.each do |p| %>
-      <div class="soft own-size">
-        <div class="inner-page"><%= image_tag(p.file.url, class: "page-img") %></div>
+  <% page_count = 0 %>
+  <% (0..6).each do |i| %>
+    <div class="soft own-size">
+      <div class="inner-page">
+        <% page_count += 1 %>
+        <h1 class="tag-header"><%= @tags[i] %></h1>
+        <% @tagged[i].each_with_index do |p, i| %>
+          <%= image_tag(p.file.url, class: "page-img") %>
+          <% if i.even? and i + 1 != @tagged.size %>
+            </div>
+            </div>
+            <div class="soft own-size">
+            <div class="inner-page">
+            <% page_count += 1 %>
+          <% end %>
+          <% if i.odd? %>
+            <div style="display:block; height: 5%; width: 100%;"></div>
+          <% end %>
+        <% end %>
       </div>
+    </div>
   <% end %>
-  <% if @photos.size.odd? %>
+  <% if page_count.odd? %>
     <div class="soft own-size"></div>
   <% end %>
   <div class="hard back-inner fixed">
@@ -175,6 +197,3 @@ console.log(page);
   </div>
   <div class="hard back-outer"></div>
 </div>
-
-<script type="text/javascript">
-</script>
