@@ -31,16 +31,22 @@
   }
 </script>
 
-<h1 class="cover-heading">Upload photos to create an album</h1>
+
+<div class="masthead clearfix">
+  <div class="inner">
+    <a href="/">
+      <%= image_tag('header') %>
+    </a>
+  </div>
+</div>
+
+<h4 class="cover-heading">Upload photos to create an album</h4>
 <div class="row" style="margin: 32px 0;">
 
   <%= form_for @photo, html: { multipart: true, class: 'dropzone col-md-10 col-md-offset-1', id: 'upload-form'}, remote: true do |f| %>
   <% end %>
 
 </div>
-
-<p class="fancy-font">This is the best font ever!</p>
-
 
 <div class="row">
 
