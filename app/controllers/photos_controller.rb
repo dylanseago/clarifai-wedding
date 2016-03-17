@@ -20,7 +20,7 @@ class PhotosController < ApplicationController
 
   def get_tags(photo)
     c = Curl::Easy.new("https://api.clarifai.com/v1/tag/") do |curl|
-      curl.headers['Authorization'] = 'Bearer p6W95YdN4xXHRm2Wt7QCKipuPHEnhf'
+      curl.headers['Authorization'] = 'Bearer Epw60opEXZOwWInKHmFvaOcc9YFFF4'
     end
 
     c.multipart_form_post = true
