@@ -20,7 +20,7 @@ class PhotosController < ApplicationController
 
   def get_tags(photo)
     c = Curl::Easy.new("https://api.clarifai.com/v1/tag/") do |curl|
-      curl.headers['Authorization'] = 'Bearer Epw60opEXZOwWInKHmFvaOcc9YFFF4'
+      curl.headers['Authorization'] = get_api_key
     end
 
     c.multipart_form_post = true
@@ -69,7 +69,25 @@ class PhotosController < ApplicationController
 
     return matches if matches
     [0]
-
-
   end
+
+
+  def get_api_key
+    $API_KEY ||= false
+    renew_api_key if !$API_KEY || $expires_at.past?
+    $API_KEY
+  end
+
+  def renew_api_key
+    $expires_at = 12.hours.from_now
+
+    c = Curl::Easy.new("https://api.clarifai.com/v1/token")
+    c.http_post(Curl::PostField.content('client_id', '61vRwXZ051pJSTuAt6RDpXd1WmpLV3nAnNOkfCJx'),
+                Curl::PostField.content('client_secret','aEsfUv3P6TEF6Q6fTYMN4376kxbJyxyEH-9pY7M7'),
+                Curl::PostField.content('grant_type','client_credentials'))
+
+    $API_KEY = 'Bearer ' + JSON.parse(c.body_str)["access_token"]
+  end
+
+
 end

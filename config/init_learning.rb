@@ -117,28 +117,4 @@ $learn_n5 = MachNode.new(5, get_data_set)
 $learn_n6 = MachNode.new(6, get_data_set)
 $learn_n7 = MachNode.new(7, get_data_set)
 
-custom_data =    {
-    "bride": 0.6788421273231506,
-    "groom": 0.5829989314079285,
-    "bridesmaids": 0.3676793575286865,
-    "food": 0.10219500958919525,
-    "wedding party": 0.34927165508270264,
-    "reception": 0.4632208049297333,
-    "ceremony": 0.38657301664352417,
-    "vows": 0.33024221658706665,
-    "kiss": 0.3947228789329529,
-    "fashion": 0.6435966491699219,
-    "jewelry": 0.1828344464302063,
-    "rings": 0.09682630747556686,
-    "invitations": 0.10170792043209076,
-    "bedroom": 0.06894209235906601,
-    "flowers": 0.7534128427505493,
-    "bouquet": 0.27867794036865234,
-    "getting ready": 0.26363810896873474,
-    "ring bearer": 0.07279980927705765,
-    "table": 0.07523700594902039,
-    "decor": 0.3303520083427429
-}
-
-puts $learn_n1.classify(custom_data)
-puts "HASASDFSDFASDFKMLAWEFKAEWFKLAWMEFLMAWEKMAEWMFEW"
+puts "Finished Training"
